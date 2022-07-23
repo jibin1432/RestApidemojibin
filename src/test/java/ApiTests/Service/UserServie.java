@@ -14,8 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserServie {
-    //private final String baseUri="https://fakerestapi.azurewebsites.net";
-    // private final String basePath ="/api/v1/Activities";
+
     private RequestSpecification requestSpecification;
 
     public UserServie() {
@@ -41,13 +40,12 @@ public class UserServie {
                 .assertThat().statusCode(HttpStatus.SC_OK)
                 .extract().response();
         int Id = response.jsonPath().getInt("id");
-        //System.out.println(response.jsonPath());
-        // System.out.println(Id);
+
         return(Id);
     }
 
     public void GetAllUsers() {
-        List<User> actActivities= Arrays.asList( RestAssured
+        List<User> actUser= Arrays.asList( RestAssured
                 .given()
                 .spec(requestSpecification)
                 .when()
@@ -57,9 +55,6 @@ public class UserServie {
                 .assertThat().statusCode(HttpStatus.SC_OK)
                 .extract().body().as(User[].class));
 
-//        //for(Activity expActivity:expActivities){
-//            Assert.assertTrue(actActivities.contains(expActivities));
-//       // }
 
     }
 
